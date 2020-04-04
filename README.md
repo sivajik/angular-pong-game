@@ -1,6 +1,6 @@
 # AngularPongGame
 
-[Demo](https://sivajik.github.io/angular-pong-game/)
+Angular Pong Game. [Play it Now](https://sivajik.github.io/angular-pong-game/)
 
 Use Keyboard's UP and DOWN keys to move the bat in both directions. 
 
