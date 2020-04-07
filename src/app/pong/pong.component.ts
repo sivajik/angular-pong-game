@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular
 import { PongGame } from '../classes/PongGame';
 import { Boundaries } from '../classes/Boundaries';
 import { KeysPressedState } from '../classes/KeysPressedState';
+import { Router } from '@angular/router';
 
 const ADULT_BAT_HEIGHT: number = 125;
 const KIDS_BAT_HEIGHT: number = 325;
@@ -39,12 +40,16 @@ export class PongComponent implements OnInit {
 
   public gameCompleted: boolean;
 
-  constructor() {
+  private router: Router;
+
+  constructor(router: Router) {
     this.width = CANVAS_WIDTH;
     this.height = CANVAS_HEIGHT;
     this.keyPressedState = { upKeyPressed: false, downKeyPressed: false };
     this.pongGame = new PongGame(this.width, this.height);
     this.gameCompleted = false;
+
+    this.router = router;
   }
 
   ngOnInit(): void { }
@@ -65,7 +70,8 @@ export class PongComponent implements OnInit {
 
   public restartGame(): void {
     this.gameCompleted = false;
-    location.reload();
+    // location.href="/pong-game";//();
+    this.router.navigateByUrl('/');
   }
 
   private displayCanvas(): void {

@@ -1,26 +1,45 @@
-<div class="row" style="background-color:whitesmoke;">
-    <div class="col-xs-9">
-        <canvas #canvasElem width="{{ width }}" height="{{ height }}"></canvas>
-        <!-- <p [ngStyle]="{'visibility' : showCoOrdinatesVal ? 'visible' : 'hidden'}">{{ l }} _____ {{ r }} _____ {{ t }} _____ {{ b }}</p> -->
+<div class="container">
+    <!-- <div class="row" style="background-color: whitesmoke">
+        <h4>
+            <a href="https://angular.io/" target="_blank">Angular </a> <a href="https://en.wikipedia.org/wiki/Pong"
+                target="_blank">Pong (single player) </a> Game - <a href="https://github.com/sivajik"
+                target="_blank">Sivaji
+                Kondapalli</a>
+        </h4>
     </div>
-    <div class="col-xs-3">
-        <table class="table table-bordered table-sm" widht="100%">
-            <thead class="thead-dark">
-                <tr>
-                    <th colspan=2 scope="col">Game Controls</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Player Type</td>
-                    <td>
-                        <select (change)="playerChanged($event)">
-                            <option value="daddy">Daddy</option>
-                            <option value="jodha">Jodha</option>
-                        </select>
-                    </td>
-                </tr>
-                <!--<tr>
+    
+    <div class="row" style="background-color: whitesmoke;">
+        <h6>
+            inspiration(s) from <a
+                href="https://medium.com/better-programming/fun-side-projects-that-you-can-build-today-553158597363"
+                target="_blank">Better
+                Programming</a>
+        </h6>
+    </div> -->
+
+    <div class="row" style="background-color:whitesmoke;">
+        <div class="col-xs-9">
+            <canvas #canvasElem width="{{ width }}" height="{{ height }}"></canvas>
+            <!-- <p [ngStyle]="{'visibility' : showCoOrdinatesVal ? 'visible' : 'hidden'}">{{ l }} _____ {{ r }} _____ {{ t }} _____ {{ b }}</p> -->
+        </div>
+        <div class="col-xs-3">
+            <table class="table table-bordered table-sm" widht="100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan=3 scope="col">Game Controls</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Player Type</td>
+                        <td>
+                            <select (change)="playerChanged($event)">
+                                <option value="daddy">Daddy</option>
+                                <option value="jodha">Jodha</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <!--<tr>
                     <td>Speed</td>
                     <td>
                         <select>
@@ -41,11 +60,16 @@
                     </td>
                 </tr>
             -->
-            </tbody>
-        </table>
-        
-        &nbsp;<button  class="btn btn-success" [ngStyle]="{visibility: gameCompleted ? 'visible' : 'hidden'}" (click)="restartGame()">New Game</button>
+                </tbody>
+            </table>
 
+            &nbsp;<button class="btn btn-success" [ngStyle]="{visibility: gameCompleted ? 'visible' : 'hidden'}"
+                (click)="restartGame()">Go Home</button>
+
+        </div>
+    </div>
+
+    <div class="row" style="background-color:whitesmoke;">
+        <p>* Use keyboard UP and DOWN arrows to move the paddle.</p>
     </div>
 </div>
-<p>* Use keyboard UP and DOWN arrows to move the paddle.</p>

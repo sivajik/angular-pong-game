@@ -1,18 +1,32 @@
-<div class="container">
-  <div class="row" style="background-color: whitesmoke">
-    <h4>
-      <a href="https://angular.io/" target="_blank">Angular </a> <a href="https://en.wikipedia.org/wiki/Pong"
-        target="_blank">Pong (single player) </a> Game - <a href="https://github.com/sivajik" target="_blank">Sivaji
-        Kondapalli</a>
-    </h4>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+  <a class="navbar-brand" href="#" routerLink="/">§ <b>Sivaji Kondapalli</b> §</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#" routerLink="/cv">CV <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Angular Games
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#" routerLink="/pong-game" routerLinkActive="active">Pong Game</a>
+          <a class="dropdown-item" href="#" routerLink="/image-slider-game">Number Slider Game</a>
+          <a class="dropdown-item" href="#" routerLink="/tetris-game">Tetris Game</a>
+        </div>
+      </li>
+    </ul>
   </div>
-  <div class="row" style="background-color: whitesmoke;">
-    <h6>
-      inspiration(s) from <a
-        href="https://medium.com/better-programming/fun-side-projects-that-you-can-build-today-553158597363"
-        target="_blank">Better
-        Programming</a>
-    </h6>
-  </div>
-  <app-pong></app-pong>
-</div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<!-- <app-image-slider></app-image-slider>  -->

@@ -1,0 +1,16 @@
+<div class="container" style="background-color: whitesmoke;">
+    <div class="row">
+        <div class="col-xs-12">
+            Total Clicks: {{ totalClicks }}
+        </div>
+    </div>
+
+    <div class="row" *ngFor="let row1 of board; index as i">
+        <div class="col-xs-12" *ngFor="let col1 of board[i]; index as j">
+            <button class="btn btn-default" (click)="onCellClick(i, j)"
+                style="height: 55px; width: 55px !important;text-align: center; border-radius: 25%; background-color: #5DADE2">
+                {{ board[i][j].value }}
+            </button>
+        </div>
+    </div>
+</div>
