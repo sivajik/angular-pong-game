@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 const DUMMY: string = ' ';
 const INITIAL_BOARD_SIZE: number = 4;
@@ -12,31 +12,33 @@ export class ImageSliderComponent implements OnInit {
   public boardDimension: number;
   public totalClicks: number = 0;
 
+  @ViewChild('boardSize') boardSize: ElementRef
+
   constructor() {
     this.boardDimension = INITIAL_BOARD_SIZE;
-    let i: number, j: number;
+    this.fillBoard();
+  }
 
+  ngOnInit(): void {
+  }
+
+  fillBoard(): void {
     let numberArray = new Array((this.boardDimension * this.boardDimension) - 1)
     for (let i = 0; i < (this.boardDimension * this.boardDimension) - 1; i++) {
       numberArray[i] = (i + 1);
     }
     numberArray = this.shuffle(numberArray);
-    console.log(numberArray);
 
     let count: number = 0;
 
-    for (i = 0; i < this.boardDimension; i++) {
+    for (let i = 0; i < this.boardDimension; i++) {
       this.board[i] = new Array(this.boardDimension);
-      for (j = 0; j < this.boardDimension; j++) {
-        // let num = numberArray[count++];
+      for (let j = 0; j < this.boardDimension; j++) {
         this.board[i][j] = new Cell(i, j, '' + numberArray[count++], true);
       }
     }
     this.board[this.boardDimension - 1][this.boardDimension - 1].show = false;
     this.board[this.boardDimension - 1][this.boardDimension - 1].value = DUMMY;
-  }
-
-  ngOnInit(): void {
   }
 
   // credit : http://stackoverflow.com/questions/962802#962890
@@ -96,7 +98,7 @@ export class ImageSliderComponent implements OnInit {
     }
 
     if (this.isGameCompleted()) {
-      alert('Game is completed');
+      alert('Hurray!!! You Won the Game');
     }
   }
 
@@ -125,6 +127,15 @@ export class ImageSliderComponent implements OnInit {
       }
     }
     return gameCompleted;
+  }
+
+  boardSizeChanged(): void {
+    console.log(this.boardSize.nativeElement.value);
+    this.board = [];
+    this.boardDimension = this.boardSize.nativeElement.value;
+    this.totalClicks = 0;
+
+    this.fillBoard();
   }
 }
 
