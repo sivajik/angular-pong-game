@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { PongGame } from '../classes/PongGame';
-import { Boundaries } from '../classes/Boundaries';
-import { KeysPressedState } from '../classes/KeysPressedState';
+import { PongGame } from '../classes/pong/PongGame';
+import { Boundaries } from '../classes/pong/Boundaries';
+import { KeysPressedState } from '../classes/pong/KeysPressedState';
 import { Router } from '@angular/router';
 
 const ADULT_BAT_HEIGHT: number = 125;

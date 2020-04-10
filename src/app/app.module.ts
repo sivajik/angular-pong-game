@@ -10,11 +10,13 @@ import { ImageSliderComponent } from './image-slider/image-slider.component';
 import '../../node_modules/bootstrap/dist/js/bootstrap.bundle';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CvComponent } from './cv/cv.component';
+import { NumberSliderComponent } from './number-slider/number-slider.component';
 
 const appRoutes: Routes = [
   { path: 'pong-game', component: PongComponent },
   { path: 'tetris-game', component: TetrisComponent },
   { path: 'image-slider-game', component: ImageSliderComponent },
+  { path: 'number-slider-game', component: NumberSliderComponent },
   { path: 'cv', component: CvComponent },
   { path: '**', component: HomepageComponent }
 ];
@@ -26,7 +28,8 @@ const appRoutes: Routes = [
     TetrisComponent,
     ImageSliderComponent,
     HomepageComponent,
-    CvComponent
+    CvComponent,
+    NumberSliderComponent
   ],
   imports: [
     BrowserModule,
