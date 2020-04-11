@@ -52,7 +52,7 @@
                 <div class="col-xs-12" *ngFor="let col1 of board[i]; index as j">
                     <div *ngIf="board[i][j].show === 'hide'"
                         [ngStyle]="{'width': eachCellWidth, 'height': eachCellHeight}">
-                        <img style="padding: 1px;" (click)="onCellClick(i,j)" src="../assets/images/black.png"
+                        <img style="padding: 1px;" (click)="onCellClick(i,j)" src="assets/images/black.png"
                             width="{{ eachCellWidth }}" height="{{ eachCellHeight }}" />
                     </div>
                     <div *ngIf="board[i][j].show === 'show'"
