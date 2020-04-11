@@ -1,1 +1,74 @@
-<p>Image slider work in progress</p>
+<div class="container" style="background-color:whitesmoke">
+    <div class="row" style="background-color:lightseagreen;padding: 4px;align-items: center;">
+        <div class="col-md-6">
+            <div class="custom-file" >
+                <input type="file" class="orm-control custom-file-input" accept="image/*" id="customFile"
+                    (change)="onChange($event)">
+                <label class="custom-file-label" for="customFile">Browse a new file or click one below</label>
+            </div>
+        </div>
+        <div class="col-md-3" >
+            Board Size:
+            <select (change)="boardConfigChanged()" #boardSize>
+                <option value="2">Jodha (2 X 2)</option>
+                <option value="4" selected>4 X 4</option>
+                <option value="6">6 X 6</option>
+                <option value="8">8 X 8</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            Total Clicks: {{ totalClicks }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2" >
+            <table>
+                <tr>
+                    <td>
+                        <img (click)="setSelectedImage($event)" src="assets/images/queen.jpg"
+                            class="rounded img-thumbnail float-left" width="200px" height="200px"
+                            style="object-fit:contain;overflow: hidden;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img (click)="setSelectedImage($event)" src="assets/images/peppapig.jpg"
+                            class="rounded img-thumbnail float-left" width="200px" height="200px"
+                            style="object-fit:contain;overflow: hidden;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img (click)="setSelectedImage($event)" src="assets/images/elsaanna.jpg"
+                            class="rounded img-thumbnail float-left" width="200px" height="200px"
+                            style="object-fit:contain;overflow: hidden;" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-10">
+            <div class="row" *ngFor="let row1 of board; index as i"
+                style="display: flex;justify-content: center;align-items: center">
+                <div class="col-xs-12" *ngFor="let col1 of board[i]; index as j">
+                    <div *ngIf="board[i][j].show === 'hide'"
+                        [ngStyle]="{'width': eachCellWidth, 'height': eachCellHeight}">
+                        <img style="padding: 1px;" (click)="onCellClick(i,j)" src="../assets/images/black.png"
+                            width="{{ eachCellWidth }}" height="{{ eachCellHeight }}" />
+                    </div>
+                    <div *ngIf="board[i][j].show === 'show'"
+                        [ngStyle]="{'width': eachCellWidth, 'height': eachCellHeight}">
+                        <img style="padding: 1px;" (click)="onCellClick(i,j)" [src]="board[i][j].value"
+                            width="{{ eachCellWidth }}" height="{{ eachCellHeight }}" />
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row" >
+                <p *ngIf="imagePath !== ''">* Click on images to move UP / DOWN / LEFT / RIGHT to get back valid image.</p>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row align-items-center"> -->
+</div>
+
+<canvas #myCanvas style="visibility: hidden;"></canvas>

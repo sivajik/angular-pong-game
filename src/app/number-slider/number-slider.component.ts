@@ -9,8 +9,6 @@ const INITIAL_BOARD_SIZE: number = 4;
   templateUrl: './number-slider.component.html'
 })
 export class NumberSliderComponent implements OnInit {
-
-
   public board: any[] = [];
   public boardDimension: number;
   public totalClicks: number = 0;
