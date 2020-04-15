@@ -52,18 +52,19 @@ export class ImageSliderComponent implements OnInit {
   ngOnInit(): void { }
 
   fillBoard(): void {
-    /*let numberArray = new Array((this.boardDimension * this.boardDimension) - 1)
+    //
+    let numberArray = new Array((this.boardDimension * this.boardDimension) - 1)
     for (let i = 0; i < (this.boardDimension * this.boardDimension) - 1; i++) {
-      numberArray[i] = (i + 1);
+      numberArray[i] = (i );
     }
-    numberArray = this.shuffle(numberArray);*/
+    numberArray = this.shuffle(numberArray);
 
     let count: number = 0;
 
     for (let i = 0; i < this.boardDimension; i++) {
       this.board[i] = new Array(this.boardDimension);
       for (let j = 0; j < this.boardDimension; j++) {
-        this.board[i][j] = new ImageCell(i, j, '' + this.parts[count], SHOW, count);
+        this.board[i][j] = new ImageCell(i, j, '' + this.parts[numberArray[count]], SHOW, count);
         count++;
       }
     }
@@ -131,7 +132,7 @@ export class ImageSliderComponent implements OnInit {
 
       ctx.drawImage(currImg, x, y, w2 * this.boardDimension, h2 * this.boardDimension);
 
-      if (i !== (this.boardDimension * this.boardDimension) - 1) {
+      if (i !== (this.boardDimension * this.boardDimension) - 1) { // 0 - 15
         this.parts.push(this.canvasElem.nativeElement.toDataURL());
       }
     }
