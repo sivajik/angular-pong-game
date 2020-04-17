@@ -15,6 +15,7 @@ const Img = new Image();
   templateUrl: './image-slider.component.html'
 })
 export class ImageSliderComponent implements OnInit {
+  public logMessage: string = '';
   private parts = [];
   public imagePath: string = '';
 
@@ -32,6 +33,10 @@ export class ImageSliderComponent implements OnInit {
     this.totalClicks = 0;
     this.parts = [];
     this.board = [];
+  }
+
+  showInfo(i: number, j: number): void {
+    this.logMessage = "[" + i + ", " + j + "] -> " + this.board[i][j].show + " & " + this.board[i][j].cellIndex;
   }
 
   // credits: https://github.com/KyrosDigital/imgsplit/blob/master/imgsplit.html
@@ -60,6 +65,7 @@ export class ImageSliderComponent implements OnInit {
     }
     numberArray = this.shuffle(numberArray);
     console.log(numberArray);
+
     let count: number = 0;
 
     let imageCellArray: ImageCell[] = new Array(this.boardDimension * this.boardDimension);
@@ -81,22 +87,6 @@ export class ImageSliderComponent implements OnInit {
         this.board[i][j] = imageCellArray[numberArray[count++]];
       }
     }
-
-  }
-
-  shuffle2d(args: any[]): any[] {
-    for (var k = 0; k < arguments.length; k++) {
-      var i = arguments[k].length;
-
-      while (--i) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var tempi = arguments[k][i];
-        var tempj = arguments[k][j];
-        arguments[k][i] = tempj;
-        arguments[k][j] = tempi;
-      }
-    }
-    return args;
   }
 
   // credit : http://stackoverflow.com/questions/962802#962890
@@ -178,11 +168,11 @@ export class ImageSliderComponent implements OnInit {
       if (col + 1 < this.boardDimension && this.board[row][col + 1].show === HIDE) {
         this.board[row][col + 1].value = currentCellImg;
         this.board[row][col + 1].show = SHOW;
-        //this.board[row][col + 1].cellIndex = currentCellIndexVal;
+        this.board[row][col + 1].cellIndex = currentCellIndexVal;
 
         this.board[row][col].value = DUMMY;
         this.board[row][col].show = HIDE;
-        //this.board[row][col].cellIndex = DUMMY_CELL_INDEX;
+        this.board[row][col].cellIndex = DUMMY_CELL_INDEX;
 
         this.totalClicks++;
       }

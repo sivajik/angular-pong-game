@@ -1,3 +1,5 @@
+{{ logMessage }}
+
 <div class="container" style="background-color:whitesmoke">
     <div class="row" style="background-color:lightseagreen;padding: 4px;align-items: center;">
         <div class="col-md-6">
@@ -53,12 +55,12 @@
                     <div *ngIf="board[i][j].show === 'hide'"
                         [ngStyle]="{'width': eachCellWidth, 'height': eachCellHeight}">
                         <img style="padding: 1px;" (click)="onCellClick(i,j)" src="assets/images/black.png"
-                            width="{{ eachCellWidth }}" height="{{ eachCellHeight }}" />
+                            width="{{ eachCellWidth }}" height="{{ eachCellHeight }}" (mouseover)="showInfo(i, j)"/>
                     </div>
                     <div *ngIf="board[i][j].show === 'show'"
                         [ngStyle]="{'width': eachCellWidth, 'height': eachCellHeight}">
                         <img style="padding: 1px;" (click)="onCellClick(i,j)" [src]="board[i][j].value"
-                            width="{{ eachCellWidth }}" height="{{ eachCellHeight }}" />
+                            width="{{ eachCellWidth }}" height="{{ eachCellHeight }}" (mouseover)="showInfo(i, j)"/>
                     </div>
                 </div>
             </div>
@@ -70,5 +72,4 @@
     </div>
     <!-- <div class="row align-items-center"> -->
 </div>
-
 <canvas #myCanvas style="visibility: hidden;"></canvas>
