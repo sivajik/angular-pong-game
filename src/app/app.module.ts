@@ -34,8 +34,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: false } // <-- debugging purposes only
+      appRoutes
     )    
   ],
   providers: [],

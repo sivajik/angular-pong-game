@@ -72,6 +72,7 @@ export class PongComponent implements OnInit {
     this.gameCompleted = false;
     // location.href="/pong-game";//();
     this.router.navigateByUrl('/');
+    // this.router.navigate(['/pong-game']);
   }
 
   private displayCanvas(): void {

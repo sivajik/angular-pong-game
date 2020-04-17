@@ -6,7 +6,7 @@ const DUMMY_CELL_INDEX: number = -999;
 
 const INITIAL_BOARD_SIZE: number = 4;
 const SHOW: string = "show";
-const HIDE: String = "hide";
+const HIDE: string = "hide";
 
 const Img = new Image();
 
@@ -31,6 +31,7 @@ export class ImageSliderComponent implements OnInit {
     this.boardDimension = INITIAL_BOARD_SIZE;
     this.totalClicks = 0;
     this.parts = [];
+    this.board = [];
   }
 
   // credits: https://github.com/KyrosDigital/imgsplit/blob/master/imgsplit.html
@@ -53,23 +54,49 @@ export class ImageSliderComponent implements OnInit {
 
   fillBoard(): void {
     //
-    let numberArray = new Array((this.boardDimension * this.boardDimension) - 1)
-    for (let i = 0; i < (this.boardDimension * this.boardDimension) - 1; i++) {
-      numberArray[i] = (i );
+    let numberArray = new Array(this.boardDimension * this.boardDimension);
+    for (let i = 0; i < (this.boardDimension * this.boardDimension); i++) {
+      numberArray[i] = (i);
     }
     numberArray = this.shuffle(numberArray);
-
+    console.log(numberArray);
     let count: number = 0;
 
+    let imageCellArray: ImageCell[] = new Array(this.boardDimension * this.boardDimension);
+
     for (let i = 0; i < this.boardDimension; i++) {
-      this.board[i] = new Array(this.boardDimension);
       for (let j = 0; j < this.boardDimension; j++) {
-        this.board[i][j] = new ImageCell(i, j, '' + this.parts[numberArray[count]], SHOW, count);
+        imageCellArray[count] = new ImageCell(i, j, '' + this.parts[count], SHOW, count);
         count++;
       }
     }
-    this.board[this.boardDimension - 1][this.boardDimension - 1].show = HIDE;
-    this.board[this.boardDimension - 1][this.boardDimension - 1].cellIndex = DUMMY_CELL_INDEX;
+    let lastIndex = (this.boardDimension * this.boardDimension) - 1;
+    imageCellArray[lastIndex].show = HIDE;
+    imageCellArray[lastIndex].cellIndex = DUMMY_CELL_INDEX;
+
+    count = 0;
+    for (let i = 0; i < this.boardDimension; i++) {
+      this.board[i] = new Array(this.boardDimension);
+      for (let j = 0; j < this.boardDimension; j++) {
+        this.board[i][j] = imageCellArray[numberArray[count++]];
+      }
+    }
+
+  }
+
+  shuffle2d(args: any[]): any[] {
+    for (var k = 0; k < arguments.length; k++) {
+      var i = arguments[k].length;
+
+      while (--i) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tempi = arguments[k][i];
+        var tempj = arguments[k][j];
+        arguments[k][i] = tempj;
+        arguments[k][j] = tempi;
+      }
+    }
+    return args;
   }
 
   // credit : http://stackoverflow.com/questions/962802#962890
@@ -151,11 +178,11 @@ export class ImageSliderComponent implements OnInit {
       if (col + 1 < this.boardDimension && this.board[row][col + 1].show === HIDE) {
         this.board[row][col + 1].value = currentCellImg;
         this.board[row][col + 1].show = SHOW;
-        this.board[row][col + 1].cellIndex = currentCellIndexVal;
+        //this.board[row][col + 1].cellIndex = currentCellIndexVal;
 
         this.board[row][col].value = DUMMY;
         this.board[row][col].show = HIDE;
-        this.board[row][col].cellIndex = DUMMY_CELL_INDEX;
+        //this.board[row][col].cellIndex = DUMMY_CELL_INDEX;
 
         this.totalClicks++;
       }
@@ -206,6 +233,7 @@ export class ImageSliderComponent implements OnInit {
   isGameCompleted(): boolean {
     let gameCompleted: boolean = true;
     let count: number = 0;
+    console.log("Checking whether game completed or not...")
     for (let i = 0; i < this.boardDimension; i++) {
       for (let j = 0; j < this.boardDimension; j++) {
 
